@@ -1,0 +1,67 @@
+a.post-link {
+    color: #4b5054;
+}
+
+a.post-link:hover, a.post-link:focus, a.post-link:active{
+    color: rgba(75, 80, 84, 0.75);
+    text-decoration: none;
+}
+
+.logo{
+    background: url(../assets/code-tutorial-light.png) no-repeat;
+    background-size: contain;
+    background-position: left center;
+}
+
+.bg-switch {
+    background-color: #e6f5ff!important;
+}
+
+.navbar-switch .navbar-nav .nav-link {
+    color: rgba(0,0,0,.5);
+}
+
+.navbar-switch .navbar-nav .nav-item.active .nav-link {
+    color: rgba(0,0,0,.8);
+}
+
+.navbar-switch .dropdown-item{
+    color: rgba(0,0,0,.5);
+}
+
+.navbar-switch .dropdown-item:hover, .navbar-switch .dropdown-item:focus{
+    color: rgba(0,0,0,.75);
+    background-color: #c0d6e5;
+}
+
+.navbar-switch .dropdown-item.active{
+    background-color: #c0d6e5;
+}
+
+.btn-outline-secondary{
+    border-color: #ced4da;
+}
+
+.card-header{
+    background: none;
+}
+
+blockquote{
+    background: rgba(0,0,0,0.25);
+}
+
+.bubble{
+    background: #fff;
+}
+
+.bubble:after{
+    border-color: #fff transparent;
+}
+
+.rating label:last-child .icon {
+    color: #1f1f1f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #1f1f1f;
+}

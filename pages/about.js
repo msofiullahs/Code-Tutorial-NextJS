@@ -1,10 +1,11 @@
 import styles from '../styles/Home.module.css'
 import Header from './layouts/header'
+import {Navbar, Nav, NavDropdown, Form, Container} from 'react-bootstrap'
 
-const About = ({posts}) => {
+const About = ({posts, menuData}) => {
     return (
     <div className={styles.container}>
-      <Header pageName="ABOUT" activePage="/about" />
+      <Header pageName="ABOUT" activePage="/about" categories={menuData} />
       <main className={styles.main}>
         <h1 className={styles.title}>
           ABOUT
