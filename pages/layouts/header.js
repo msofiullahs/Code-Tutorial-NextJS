@@ -1,18 +1,25 @@
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react';
-import {Navbar, Nav, NavDropdown, Form, Container} from 'react-bootstrap'
+import {Navbar, Nav, Form, Container, Dropdown, FormControl, Button, InputGroup} from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Header = ({pageName, activePage, categories}) => {
 
     const [checked, setChecked] = useState(false);
 
     useEffect(() => {
-        setChecked(!!Number(localStorage.getItem('dark')))
-    }, [checked])
+        loadFirst();
+    }, [])
 
-    const handleTheme = () => {
-        setChecked(!checked);
+    const loadFirst = () => {
+        setChecked(!!Number(localStorage.getItem('dark')));
+    };
+
+    const handleTheme = (e) => {
+        const { checked } = e.target
+        setChecked(checked);
         localStorage.setItem('dark', + checked)
+        console.log(checked)
     };
 
     return (<div style={{
@@ -26,34 +33,52 @@ const Header = ({pageName, activePage, categories}) => {
             <link rel="manifest" href="/assets/favicon/site.webmanifest" />
             <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5" type="image/svg+xml" />
             <meta name="msapplication-TileColor" content="#da532c" />
+            <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap" as="font" type="font/woff2" crossOrigin />
+            <link rel="stylesheet" id="active-stylesheet" href={checked ? "../frontend/dark.css" : "../frontend/light.css"} type="text/css" />
         </Head>
-        <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar fixed="top" collapseOnSelect expand="lg" bg={checked ? "dark" : "light"} variant={checked ? "dark" : "light"} className="navbar-switch bg-switch">
             <Container>
-                <Navbar.Brand href="/">Code Tutorial</Navbar.Brand>
+                <Navbar.Brand href="/">
+                    <div className="logo"></div>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Form.Check
-                    type="switch"
+                <Form.Switch
                     id="custom-switch"
-                    label={!checked ? "Dark" : "Light"}
-                    onChange={() => handleTheme()}
-                    defaultChecked={!checked}
+                    label={checked ? "Dark" : "Light"}
+                    onClick={e => handleTheme(e)}
+                    defaultChecked={checked}
                 />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav defaultActiveKey="/" activeKey={activePage} className="justify-content-end ml-auto">
-                        <Nav.Item>
+                    <Nav defaultActiveKey="/" activeKey={activePage} className="justify-content-end ml-auto" as="ul">
+                        <Nav.Item as="li">
                             <Nav.Link href="/" eventKey="/">Home</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
+                        <Nav.Item as="li">
                             <Nav.Link href="/about" eventKey="about">About</Nav.Link>
                         </Nav.Item>
-                        <NavDropdown title="Categories" id="collasible-nav-dropdown" alignRight>
-                        {categories.data.map((category) => (
-                            <NavDropdown.Item href={`category/` + category.category_slug} eventKey={category.category_slug}>
-                                {category.category_title}
-                            </NavDropdown.Item>
-                        ))}
-                        </NavDropdown>
+                        <Dropdown as="li" className="nav-item">
+                            <Dropdown.Toggle className="nav-link" as="div">
+                                Categories
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu alignRight className="bg-switch">
+                                {categories.data.map((category) => (
+                                    <Dropdown.Item href={`/category/` + category.category_slug} eventKey={category.category_slug}>
+                                        {category.category_title}
+                                    </Dropdown.Item>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </Nav>
+                    <Form inline className="ml-lg-2 mt-sm-2 mt-md-0">
+                        <InputGroup>
+                            <FormControl type="text" placeholder="Search" />
+                            <InputGroup.Append>
+                                <Button variant="outline-secondary">
+                                    <FontAwesomeIcon icon="search" />
+                                </Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

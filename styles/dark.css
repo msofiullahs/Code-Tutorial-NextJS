@@ -13,7 +13,7 @@ a.post-link:hover, a.post-link:focus, a.post-link:active{
 }
 
 .logo{
-    background: url(../assets/logo-transparent-small.png) no-repeat;
+    background: url(../public/assets/logo-transparent-small.png) no-repeat;
     background-size: contain;
     background-position: left center;
 }

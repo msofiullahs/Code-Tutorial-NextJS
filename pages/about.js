@@ -1,11 +1,11 @@
 import styles from '../styles/Home.module.css'
 import Header from './layouts/header'
-import {Navbar, Nav, NavDropdown, Form, Container} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 
-const About = ({posts, menuData}) => {
+const About = ({posts, categories}) => {
     return (
     <div className={styles.container}>
-      <Header pageName="ABOUT" activePage="/about" categories={menuData} />
+        <Header pageName="About" activePage="about" categories={categories} />
       <main className={styles.main}>
         <h1 className={styles.title}>
           ABOUT
@@ -16,18 +16,16 @@ const About = ({posts, menuData}) => {
         ))}
         </ul>
       </main>
+      <Footer />
     </div>
     )
 }
 
 export async function getStaticProps() {
-    // Call an external API endpoint to get posts
     const url = process.env.API_HOST + `post`
     const res = await fetch(url)
     const posts = await res.json()
-  
-    // By returning { props: posts }, the Blog component
-    // will receive `posts` as a prop at build time
+
     return {
         props: {
             posts,
