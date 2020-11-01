@@ -12,15 +12,15 @@ const Home = ({posts, categories}) => {
             <Row>
                 <Col xs={12} lg={9}>
                     {posts.data.map((post) => (
-                        <Card as="a" href={`/post/` + post.post_slug} bg="transparent" className="border-0 mb-4 h-md-250 post-link code-tutorial-element">
-                            <Row className="no-gutters">
+                        <Card as="a" href={`/post/` + post.post_slug} bg="transparent" className="border-0 mb-5 mb-md-4 post-link code-tutorial-element">
+                            <Row className="align-items-center" noGutters>
                                 <Col md={3}>
-                                    <Card.Img className="code-tutorial-element" src={post.thumb_url} />
+                                    <Card.Img className="code-tutorial-element mb-3 mb-md-0 list-img" src={post.thumb_url} />
                                 </Col>
                                 <Col md={9}>
-                                    <Card.Body className="py-0">
+                                    <Card.Body className="py-0 px-0 pl-md-3">
                                         <h4 className="post-title">{post.post_title}</h4>
-                                        <p>{post.plain_content}</p>
+                                        <p className="mb-0">{post.excerpt}</p>
                                     </Card.Body>
                                 </Col>
                             </Row>

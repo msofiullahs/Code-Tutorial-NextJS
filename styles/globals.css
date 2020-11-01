@@ -275,10 +275,19 @@ div.code-toolbar > .toolbar a {
     text-shadow: 0 0 5px #ffc107;
 }
 
+.list-img{
+    max-height: 180px;
+    object-fit: cover;
+}
+
 @media (min-width: 992px) {
     .custom-switch{
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .list-img{
+        max-height: auto;
     }
 
     .dropdown-menu{
