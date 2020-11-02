@@ -30,16 +30,6 @@ const Home = ({posts, categories}) => {
                 <Sidebar about />
             </Row>
         </Container>
-      {/* <main className={styles.main}>
-        <h1 className={styles.title}>
-          ABOUT
-        </h1>
-        <ul>
-        {posts.data.map((post) => (
-            <li>{post.post_title}</li>
-        ))}
-        </ul>
-      </main> */}
         <Footer />
     </div>
     )
@@ -49,14 +39,10 @@ export async function getStaticProps() {
     const url = process.env.API_HOST + `post`
     const res = await fetch(url)
     const posts = await res.json()
-    const pageName = "Home"
-    const activePage = "/"
 
     return {
         props: {
             posts,
-            pageName,
-            activePage
         },
     }
 }

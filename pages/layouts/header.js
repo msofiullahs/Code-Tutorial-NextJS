@@ -3,7 +3,16 @@ import React, { useState, useEffect } from 'react';
 import {Navbar, Nav, Form, Container, Dropdown, FormControl, Button, InputGroup} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Header = ({pageName, activePage, categories}) => {
+const Header = ({
+    pageName, 
+    activePage, 
+    categories,
+    postSlug,
+    metaDesc,
+    metaKeywords,
+    ogImage,
+    ogType
+}) => {
 
     const [checked, setChecked] = useState(false);
 
@@ -35,6 +44,16 @@ const Header = ({pageName, activePage, categories}) => {
             <meta name="msapplication-TileColor" content="#da532c" />
             <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap" as="font" type="font/woff2" crossOrigin />
             <link rel="stylesheet" id="active-stylesheet" href={checked ? "../frontend/dark.css" : "../frontend/light.css"} type="text/css" />
+            <link rel="canonical" href={`post/` + postSlug} />
+            <meta name="description" content={metaDesc} />
+            <meta name="keywords" content={metaKeywords}/>
+            <meta property="og:title" content={pageName} />
+            <meta property="og:type" content={ogType} />
+            <meta property="og:url" content={`post/` + postSlug} />
+            <meta property="og:image" content={ogImage} />
+            <meta property="og:description" content={metaDesc} />
+            <meta name="twitter:card" content="summary"/>
+            <meta name="twitter:creator" content="@sinaungoding"/>
         </Head>
         <Navbar fixed="top" collapseOnSelect expand="lg" bg={checked ? "dark" : "light"} variant={checked ? "dark" : "light"} className="navbar-switch bg-switch">
             <Container>

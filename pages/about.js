@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css'
 import Header from './layouts/header'
+import Footer from './layouts/footer'
 import {Container} from 'react-bootstrap'
 
 const About = ({posts, categories}) => {
